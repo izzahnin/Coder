@@ -43,7 +43,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  color: #ffffff;
+  color: var(--white);
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: -8px -8px 10px 3px #414a554f, 8px 8px 10px 3px #242a3260;
@@ -54,15 +54,16 @@ body {
 }
 
 .display > .input {
-  font-size: 18px;
-  margin-bottom: 8px;
+  font-size: 22px;
+  /* margin-bottom: 8px; */
 }
 
 .display > .output {
-  font-size: 48px;
+  font-size: 42px;
   font-weight: bold;
   max-width: 100%;
   overflow: auto;
+  white-space: nowrap;
 }
 
 .content .operator {
