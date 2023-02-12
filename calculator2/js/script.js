@@ -1,6 +1,6 @@
-const output = document.querySelector(".output");
-const input = document.querySelector(".input");
-var textEquation = "";
+const display_output = document.querySelector(".display .output");
+const display_input = document.querySelector(".display .input");
+var input = "";
 var onOp = false;
 
 const handleBtnClick = (e) => {
@@ -8,56 +8,80 @@ const handleBtnClick = (e) => {
   const value = e.innerHTML.trim();
   switch (value) {
     case "AC":
-      textEquation = "0";
-      output.innerHTML = textEquation;
+      input = "0";
+      display_input.innerHTML = "";
+      display_output.innerHTML = "0";
       onOp = false;
       break;
     case "C":
-      if (textEquation.length <= 1) {
-        textEquation = "0";
-        output.innerHTML = textEquation;
+      if (input.length <= 1) {
+        input = "0";
+        display_output.innerHTML = input;
       } else {
         if (onOp) onOp = false;
+        input = input.slice(0, -1);
+        // hapus satu persatu
+        display_output.innerHTML = display_output.innerHTML.slice(0, -1);
 
-        textEquation = textEquation.slice(0, -1);
-        output.innerHTML = output.innerHTML.slice(0, -1);
-
-        if (textEquation[textEquation.length - 1] === "+" || textEquation[textEquation.length - 1] === "-" || textEquation[textEquation.length - 1] === "*" || textEquation[textEquation.length - 1] === "/") {
-          onOp = true;
-        }
+        // if (input[input.length - 1] === "+" || input[input.length - 1] === "-" || input[input.length - 1] === "*" || input[input.length - 1] === "/") {
+        //   onOp = true;
+        // }
       }
       break;
 
     case "=":
-      output.innerHTML = eval(textEquation);
-      textEquation = output.innerHTML;
+      display_input.innerHTML = display_output.innerHTML;
+      display_output.innerHTML = eval(input);
+
+      if (onOp === true) display_input.innerHTML = "";
+
+      if (display_output.innerHTML === input) return;
       break;
 
     default:
       //ketika angka pertama dimasukkan 0 direplace
-      if (output.innerHTML === "0" && e.id === "btn-num") {
-        output.innerHTML = "";
-        textEquation = "";
+      if (display_output.innerHTML === "0" && e.id === "btn-num") {
+        display_output.innerHTML = "";
+        input = "";
       }
 
       if (e.id === "btn-op" && onOp === true) {
-        textEquation = textEquation.slice(0, -1);
-        output.innerHTML = output.innerHTML.slice(0, -1);
+        //op terbaca ketika dihapus
+        input = input.slice(0, -1);
+        display_output.innerHTML = display_output.innerHTML.slice(0, -1);
       }
 
-      if (e.id === "btn-op" && textEquation[textEquation.length - 1] === ".") {
-        return;
-      }
+      // if(e.id === "btn-dot"){
+      //   var btn-dot = true;
+      // }
 
+      //ketika memakai koma makan operator tidak bisa diiinput
+      if (e.id === "btn-op" && input[input.length - 1] === ".") return;
+
+      if (e.id === "btn-dot" && onOp === true) return;
       if (e.id === "btn-op") onOp = true;
       else onOp = false;
 
-      if (e.id === "btn-op") onOp = true;
-      else onOp = false;
+      //mengubah tanda × menjadi *
+      if (value === "×") input += "*";
+      else input += value;
 
-      if (value === "×") textEquation += "*";
-      else textEquation += value;
-
-      output.innerHTML += value;
+      display_output.innerHTML += cleanInput(value);
   }
 };
+
+function cleanInput(input) {
+  let input_array = input.split("");
+  let input_array_length = input_array.length;
+
+  for (let i = 0; i < input_array_length; i++) {
+    if (input_array[i] === "×") {
+      input_array[i] = ` <span class="operator">&times;</span>`;
+    } else if (input_array[i] == "+") {
+      input_array[i] = ` <span class="operator">+</span> `;
+    } else if (input_array[i] == "-") {
+      input_array[i] = ` <span class="operator">-</span> `;
+    }
+  }
+  return input_array.join("");
+}

@@ -1,8 +1,4 @@
-/* font for numpad */
-@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
-/* font for display */
-/* @import url("https://allfont.net/allfont.css?fonts=digital-7"); */
-@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap");
 
 :root {
   --black: #2f3740;
@@ -23,7 +19,7 @@
 }
 
 body {
-  font-family: "Secular One", sans-serif;
+  font-family: "Roboto Mono", monospace;
   background-color: var(--background);
 }
 
@@ -48,7 +44,6 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   color: #ffffff;
-  font-family: "Digital-7", Arial, Helvetica, sans-serif;
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: -8px -8px 10px 3px #414a554f, 8px 8px 10px 3px #242a3260;
@@ -58,13 +53,13 @@ body {
   height: 120px;
 }
 
-.content > .input {
-  font-size: 24px;
+.display > .input {
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
-.content > .output {
-  font-size: 54px;
+.display > .output {
+  font-size: 48px;
   font-weight: bold;
   max-width: 100%;
   overflow: auto;
@@ -93,7 +88,7 @@ body {
   text-align: center;
   color: var(--grey);
   font-size: 50px;
-  font-family: "Secular One", sans-serif;
+  font-family: "Roboto Mono", monospace;
   font-weight: 500;
   width: 80px;
   height: 85px;
