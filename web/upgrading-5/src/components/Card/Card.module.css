@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* align-items: center; */
+  /* width: 50vmin; */
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  fill: #919191;
+  /* background: var(--yellow); */
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: none;
+  background: #1c7ef8;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
